@@ -31,4 +31,4 @@ jobs:
         run: sam build --use-container
 
       - name: SAM Deploy
-        run: sam deploy --stack-name BilibiliDailyUp --s3-bucket lambdaservicebucket --no-confirm-changeset --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --parameter-overrides BiliBiliCookiesBase64=${{ secrets.BILIBILI_COOKIES_BASE64 }} PushPlusToken=${{ PUSHPLUS_TOKEN }} ServerChanToken=${{ SERVERCHAN_TOKEN }}
+        run: sam deploy --stack-name BilibiliDailyUp --s3-bucket lambdaservicebucket --no-confirm-changeset --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --parameter-overrides BiliBiliCookiesBase64=${{ secrets.BILIBILI_COOKIES_BASE64 }} PushPlusToken=${{ secrets.PUSHPLUS_TOKEN }} ServerChanToken=${{ secrets.SERVERCHAN_TOKEN }}
