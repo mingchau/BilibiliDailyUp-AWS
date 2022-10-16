@@ -1,3 +1,23 @@
+本项目fork自[Wyatt1026/BilibiliDailyUp](https://github.com/Wyatt1026/BilibiliDailyUp)
+
+对其进行修改，现在可用于AWS Lambda的定时任务，通过Github Actions工作流进行部署。
+
+### 如何使用：
+- fork本项目
+- 在Repository Settings → Secrets → Actions中添加如下secrets
+  - AWS_ACCESS_KEY_ID
+  - AWS_SECRET_ACCESS_KEY
+  - AWS_REGION
+  - BILIBILI_COOKIES_BASE64
+  - PUSHPLUS_TOKEN
+  - SERVERCHAN_TOKEN
+
+
+
+
+_以下为原项目的README：_
+
+---
 ## Bilibili升级脚本-支持青龙/云函数
 
 ## 前言

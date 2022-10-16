@@ -1,0 +1,53 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  BiliBili每日任务
+
+  通过完成BiliBili每日任务获得经验值，加速升级。
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Parameters:
+  BiliBiliCookiesBase64:
+    Description: "Base64 Url-safe Encoded BiliBili Cookies"
+    Type: "String"
+  PushPlusToken:
+    Description: "PushPlus Token"
+    Type: "String"
+  ServerChanToken:
+    Description: "ServerChan Token"
+    Type: "String"
+
+Globals:
+  Function:
+    Timeout: 900
+
+Resources:
+  BiliBiliDailyTasks:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: app/
+      Handler: index.lambda_handler
+      Runtime: python3.8
+      Architectures:
+        - x86_64
+      Events:
+        InvocationLevel:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 1 * * ? *)
+      Environment:
+        Variables:
+          BILIBILI_COOKIES_BASE64: !Ref BiliBiliCookiesBase64
+          PUSHPLUS_TOKEN: !Ref PushPlusToken
+          SERVERCHAN_TOKEN: !Ref ServerChanToken
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  BiliBiliDailyTasks:
+    Description: "BiliBili Daily Tasks Lambda Function ARN"
+    Value: !GetAtt BiliBiliDailyTasks.Arn
+  BiliBiliDailyTasksIamRole:
+    Description: "Implicit IAM Role created for BiliBili Daily Tasks function"
+    Value: !GetAtt BiliBiliDailyTasksRole.Arn
