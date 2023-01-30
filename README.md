@@ -13,11 +13,13 @@
   - SERVERCHAN_TOKEN
 
 
-
-
+其中`BILIBILI_COOKIES_BASE64`是用户登录状态的凭证。  
+需要使用URL-safe encoding编码成BASE64格式，多账号可以一起编码。  
+编码时：多个账号的cookies使用CRLF换行符，方便代码进行解码。
+推荐使用这个工具进行BASE64编码操作：https://www.base64encode.org/
+---
 _以下为原项目的README：_
 
----
 ## Bilibili升级脚本-支持青龙/云函数
 
 ## 前言
