@@ -10,6 +10,7 @@ Copyright (c) 2022 by ForMemRs, All Rights Reserved.
 
 import time
 
+
 def formate_print(content):
     _time = time.strftime('%H:%M:%S', time.localtime())
     print(f'[{_time}]INFO: {content}')
